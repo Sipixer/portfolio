@@ -9,7 +9,7 @@ const Portfolio = () => {
       <h2 className="section__title">Projets</h2>
 
       <div className="work__container grid">
-        {Projets.map(({ id, img, title, link }) => {
+        {Projets.map(({ img, title, link }, id) => {
           return <Card key={id} img={img} title={title} link={link} />;
         })}
       </div>

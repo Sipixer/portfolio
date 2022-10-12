@@ -10,7 +10,7 @@ const Resume = () => {
 
       <div className="resume__container grid">
         <div className="timeline grid">
-          {Data.map(({ id, icon, year, title, description }) => {
+          {Data.map(({ icon, year, title, description }, id) => {
             return (
               <Card
                 key={id}

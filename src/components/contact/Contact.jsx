@@ -84,7 +84,7 @@ const contact = () => {
               cols="1000"
               rows="10000"
               className="contact__form-input"
-              placeholder="Écrit moi ton message"
+              placeholder="Ton message"
               required
             ></textarea>
           </div>

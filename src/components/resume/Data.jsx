@@ -12,7 +12,7 @@ const Data = [
     year: "2018 - 2021",
     title: "Bac général",
     description: [
-      "Bac generale spécialité Math-Physique au lycée Jean Lurçat a St-Céré.",
+      "Bac général spécialité Math-Physique au lycée Jean Lurçat a St-Céré.",
     ],
   },
   {
@@ -20,8 +20,8 @@ const Data = [
     year: "2020",
     title: "Developpement de bot Discord",
     description: [
-      "Gestion d'un bot discord gerant plus de 300 personnes. (Premiers pas en Javascript)",
-      "Puis création de la partie web. (Debut du HTML/CSS)",
+      "Gestion d'un bot Discord gérant plus de 300 personnes. (Premiers pas en JavaScript)",
+      "Puis création de la partie web. (Début du HTML/CSS)",
     ],
   },
   {
@@ -29,7 +29,7 @@ const Data = [
     year: "2016 - 2019",
     title: "Developpement plugin Minecraft",
     description: [
-      "Developpement de multiple plugin pour different projet de serveur minecraft.",
+      "Développement de multiples plugin pour diffèrent projet de serveur Minecraft.",
       "(Premier pas dans la programmation (Java))",
     ],
   },

@@ -13,8 +13,8 @@ const About = () => {
         <div className="about__data grid">
           <div className="about__info">
             <p className="about__description">
-              Je suis Sylvain Rougié, un developpeur Full Stack junior. J'ai un
-              peu d'experience avec mes projets personnels sur dans la
+              Je suis Sylvain Rougié, un développeur Full Stack junior. J'ai un
+              peu d'expérience avec mes projets personnels sur dans la
               construction d'une application web de A à Z.
             </p>
             <a className="btn" href="/CV_Sylvain_Rougié.pdf" target="_blank">

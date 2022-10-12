@@ -39,10 +39,11 @@ const contact = () => {
 
       <div className="contact__container grid">
         <div className="contact_info">
-          <h3 className="contact__title">N'hésité pas a venir me parler.</h3>
+          <h3 className="contact__title">N'hésitez pas à me contacter.</h3>
           <p className="contact__details">
-            Tu peux aussi me contacter directement par{" "}
-            <a href="mailto:sylvainrougie@orange.fr">email</a>.
+            Tu peux aussi me contacter directement par mail:{" "}
+            <a href="mailto:sylvainrougie@orange.fr">sylvainrougie@orange.fr</a>
+            .
           </p>
         </div>
         <form

@@ -23,4 +23,4 @@ jobs:
     needs: [build]
     runs-on: self-hosted
     steps:
-      - run: npm preview
+      - run: npm run preview

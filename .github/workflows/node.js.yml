@@ -22,5 +22,5 @@ jobs:
   start:
     needs: [build]
     runs-on: self-hosted
-    steps:
-      - run: npm run preview
+    run: npm run preview
+    wait-on: 'http://localhost:3000

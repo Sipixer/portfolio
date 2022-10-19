@@ -19,7 +19,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build
-    - run: pm2 restart "PortFolio"
   start:
     needs: [build]
     runs-on: self-hosted

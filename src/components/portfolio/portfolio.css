@@ -54,7 +54,27 @@
   transition: 0.3s;
   opacity: 0;
 }
+.projet__button {
+  color: #fff;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 5rem;
+  font-size: var(--h3-font-size);
+  display: block;
+  background-color: #ffa988;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  transition: 0.3s;
+  opacity: 0;
+}
 .work__card:hover .work__button {
+  opacity: 1;
+}
+.work__card:hover .projet__button {
   opacity: 1;
 }
 

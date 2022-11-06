@@ -102,6 +102,10 @@ img {
   margin: 0 auto;
 }
 
+a {
+  color: rgb(0, 102, 255);
+}
+
 .grid {
   display: grid;
 }
@@ -139,17 +143,9 @@ img {
   display: inline-block;
   background-color: var(--first-color);
   font-weight: var(--font-bold);
-}
-
-@keyframes button-push {
-  50% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(0.95);
-  }
+  transition: transform 200ms ease-in-out;
 }
 
 .btn:hover {
-  animation: button-push 0.3s linear 1;
+  transform: scale(0.95);
 }

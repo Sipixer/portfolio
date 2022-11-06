@@ -9,10 +9,11 @@ const Card = ({ icon, year, title, description }) => {
 
       {description.map((desc, id) => {
         return (
-          <p className="timeline__text" key={id}>
-            {desc}
-            <br />
-          </p>
+          <p
+            className="timeline__text"
+            key={id}
+            dangerouslySetInnerHTML={{ __html: desc }}
+          ></p>
         );
       })}
     </div>

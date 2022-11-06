@@ -8,7 +8,7 @@ const Card = ({ img, title, link, source, blank }) => {
         <div className="work__mask"></div>
       </div>
       <h3 className="work__title">{title}</h3>
-      <a href={link} target={blank && "_blank"} className="work__button">
+      <a href={link} target={blank ? "_blank" : ""} className="work__button">
         <i className="icon-link work__button-icon"></i>
       </a>
       {source != undefined && (

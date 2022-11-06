@@ -1,6 +1,14 @@
 const Data = [
   {
     icon: "icon-graduation",
+    year: "Octobre 2022",
+    title: "Certification CodinGame en Javascript et Python",
+    description: [
+      "Obtention des certifications CodinGame en <a href='https://www.codingame.com/certification/yqYziEZd-caMwQkwhD_Yow' target='_blank'>Javascript</a> et en <a href='https://www.codingame.com/certification/QV2zjPEged-j_YbX93W6wg' target='_blank'>Python</a>.",
+    ],
+  },
+  {
+    icon: "icon-graduation",
     year: "2021 - maintenant",
     title: "Autoformation",
     description: [

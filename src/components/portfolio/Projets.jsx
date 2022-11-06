@@ -12,7 +12,7 @@ const Projets = [
   {
     img: Image2,
     title: "Frontend Mentor | QR code component",
-    link: "./qr",
+    link: "https://sipixer.github.io/QR-CODE-Mentor/",
     blank: true,
     source: "https://github.com/Sipixer/QR-CODE-Mentor",
   },

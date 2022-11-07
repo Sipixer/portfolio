@@ -44,11 +44,11 @@ const About = () => {
 
             <div className="skills__data">
               <div className="skills__titles">
-                <h3 className="skills__name">MySQL</h3>
-                <span className="skills__number">40%</span>
+                <h3 className="skills__name">MySQL / PostgreSQL</h3>
+                <span className="skills__number">60%</span>
               </div>
               <div className="skills__bar">
-                <span className="skills_percentage ui__design"></span>
+                <span className="skills_percentage sql"></span>
               </div>
             </div>
           </div>

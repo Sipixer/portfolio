@@ -1,0 +1,20 @@
+.skillstitle {
+  font-size: var(--h3-font-size);
+  margin: 0.5rem;
+  text-align: center;
+}
+.skill__liste {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+@media screen and (max-width: 500px) {
+  .skill__liste {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}

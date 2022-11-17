@@ -71,13 +71,42 @@
   transition: 0.3s;
   opacity: 0;
 }
+
+.techs {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+.tech__badge {
+  font-size: var(--h3-font-size);
+  display: block;
+  background-color: #f9f7fd;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  transition: 0.3s;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tech__badge img {
+  width: 30px;
+}
 .work__card:hover .work__button {
   opacity: 1;
 }
 .work__card:hover .projet__button {
   opacity: 1;
 }
-
+.work__card:hover .tech__badge {
+  opacity: 1;
+}
 .work__card:hover .work__title {
   opacity: 1;
   transform: translateY();

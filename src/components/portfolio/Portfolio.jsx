@@ -9,7 +9,7 @@ const Portfolio = () => {
       <h2 className="section__title">Projets</h2>
 
       <div className="work__container grid">
-        {Projets.map(({ img, title, link, source, blank }, id) => {
+        {Projets.map(({ img, title, link, source, blank, techs }, id) => {
           return (
             <Card
               key={id}
@@ -18,6 +18,7 @@ const Portfolio = () => {
               link={link}
               source={source}
               blank={blank}
+              techs={techs}
             />
           );
         })}

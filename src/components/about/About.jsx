@@ -2,6 +2,8 @@ import React from "react";
 import "./about.css";
 import Avatar from "../../assets/avatar-2.svg";
 
+import { Skills } from "./Skills";
+
 const About = () => {
   return (
     <section className="about container section" id="about">
@@ -21,37 +23,7 @@ const About = () => {
               Mon CV
             </a>
           </div>
-          <div className="about__skills grid">
-            <div className="skills__data">
-              <div className="skills__titles">
-                <h3 className="skills__name">Javascript</h3>
-                <span className="skills__number">90%</span>
-              </div>
-              <div className="skills__bar">
-                <span className="skills_percentage js"></span>
-              </div>
-            </div>
-
-            <div className="skills__data">
-              <div className="skills__titles">
-                <h3 className="skills__name">HTML / CSS</h3>
-                <span className="skills__number">75%</span>
-              </div>
-              <div className="skills__bar">
-                <span className="skills_percentage html__css"></span>
-              </div>
-            </div>
-
-            <div className="skills__data">
-              <div className="skills__titles">
-                <h3 className="skills__name">MySQL / PostgreSQL</h3>
-                <span className="skills__number">60%</span>
-              </div>
-              <div className="skills__bar">
-                <span className="skills_percentage sql"></span>
-              </div>
-            </div>
-          </div>
+          <Skills />
         </div>
       </div>
     </section>

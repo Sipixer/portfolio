@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ img, title, link, source, blank }) => {
+const Card = ({ img, title, link, source, blank, techs }) => {
   return (
     <div className="work__card">
       <div className="work__thumbnail">
@@ -16,6 +16,13 @@ const Card = ({ img, title, link, source, blank }) => {
           <i className="fa-brands fa-github work__button-icon"></i>
         </a>
       )}
+      <div className="techs">
+        {techs.map((tech) => (
+          <div className="tech__badge" key={tech.toString()}>
+            <img src={tech} alt="" />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

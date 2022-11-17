@@ -11,7 +11,7 @@ const Projets = [
     link: "#",
     blank: false,
     source: "https://github.com/Sipixer/portfolio",
-    techs: [ReactIcon],
+    techs: [ReactIcon, CssIcon],
   },
   {
     img: Image2,

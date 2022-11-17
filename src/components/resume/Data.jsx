@@ -1,18 +1,12 @@
 const Data = [
   {
     icon: "icon-graduation",
-    year: "Octobre 2022",
-    title: "Certification CodinGame en Javascript et Python",
-    description: [
-      "Obtention des certifications CodinGame en <a href='https://www.codingame.com/certification/yqYziEZd-caMwQkwhD_Yow' target='_blank'>Javascript</a> et en <a href='https://www.codingame.com/certification/QV2zjPEged-j_YbX93W6wg' target='_blank'>Python</a>.",
-    ],
-  },
-  {
-    icon: "icon-graduation",
     year: "2021 - maintenant",
     title: "Autoformation",
     description: [
       "Création de projet personnel pour me former au développement plutôt orienté web.",
+      "- Obtention des certifications CodinGame en <a href='https://www.codingame.com/certification/yqYziEZd-caMwQkwhD_Yow' target='_blank'>Javascript</a> et en <a href='https://www.codingame.com/certification/QV2zjPEged-j_YbX93W6wg' target='_blank'>Python</a>.",
+      "- Approfondissement du react grâce a la formation  <a href='https://codelynx.dev/beginreact' target='_blank'>BeginReact</a> par <a href='https://twitter.com/melvynxdev' target='_blank'>Melvyn</a>. <br/>",
     ],
   },
   {

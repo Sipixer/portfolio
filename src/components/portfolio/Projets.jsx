@@ -1,6 +1,7 @@
 import Image1 from "../../assets/Portfolio.png";
 import Image2 from "../../assets/Défi-Quiz.png";
 import Image3 from "../../assets/Beta-QuizzApp.png";
+import Image4 from "../../assets/Ville.png";
 import ReactIcon from "../../assets/icon/react.png";
 import CssIcon from "../../assets/icon/css.png";
 import NuxtIcon from "../../assets/icon/nuxt.png";
@@ -29,6 +30,14 @@ const Projets = [
     blank: true,
     source: "https://github.com/Sipixer/QuizzApp",
     techs: [NuxtIcon, CssIcon],
+  },
+  {
+    img: Image4,
+    title: "Données par ville",
+    link: "https://sipixer.github.io/VilleData/",
+    blank: true,
+    source: "https://github.com/Sipixer/VilleData",
+    techs: [ReactIcon, TypeScriptIcon, CssIcon],
   },
 ];
 

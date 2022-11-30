@@ -1,9 +1,10 @@
 import Image1 from "../../assets/Portfolio.png";
-import Image2 from "../../assets/QR-code.png";
+import Image2 from "../../assets/Défi-Quiz.png";
 import Image3 from "../../assets/Beta-QuizzApp.png";
 import ReactIcon from "../../assets/icon/react.png";
 import CssIcon from "../../assets/icon/css.png";
 import NuxtIcon from "../../assets/icon/nuxt.png";
+import TypeScriptIcon from "../../assets/icon/typescript.png";
 const Projets = [
   {
     img: Image1,
@@ -15,11 +16,11 @@ const Projets = [
   },
   {
     img: Image2,
-    title: "Frontend Mentor | QR code component",
-    link: "https://sipixer.github.io/QR-CODE-Mentor/",
+    title: "Défi | Quiz | 2h",
+    link: "https://sipixer.github.io/Quiz/",
     blank: true,
-    source: "https://github.com/Sipixer/QR-CODE-Mentor",
-    techs: [CssIcon],
+    source: "https://github.com/Sipixer/Quiz",
+    techs: [ReactIcon, TypeScriptIcon, CssIcon],
   },
   {
     img: Image3,

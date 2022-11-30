@@ -9,7 +9,9 @@ const Home = () => {
       <div className="intro">
         <img src={Me} alt="" className="home__img" />
         <h1 className="home__name">Sylvain Rougié</h1>
-        <span className="home__education">Développeur Full Stack (Junior)</span>
+        <span className="home__education">
+          Développeur Full Stack (Junior) <br /> En recherche d'alternance
+        </span>
 
         <HeaderSocials />
 

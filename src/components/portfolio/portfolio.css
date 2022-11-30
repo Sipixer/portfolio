@@ -96,7 +96,7 @@
   align-items: center;
 }
 .tech__badge img {
-  width: 30px;
+  width: 25px;
 }
 .work__card:hover .work__button {
   opacity: 1;

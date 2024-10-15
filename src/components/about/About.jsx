@@ -15,10 +15,11 @@ const About = () => {
         <div className="about__data grid">
           <div className="about__info">
             <p className="about__description">
-              Après plusieurs années d'autodidacte dans l'informatique, je suis
-              à la recherche d'une entreprise pour une alternance (2 semaines en
-              entreprise/1 semaine en cours) débutant le 12 décembre. Pour
-              approfondir mes compétences que je développe tous les jours.
+              Après plusieurs années d'apprentissage autodidacte dans
+              l'informatique, je suis actuellement en alternance chez Syloe
+              Group tout en poursuivant un mastère en Cloud, Sécurité &
+              Infrastructure à Ynov. Ce qui me permet d'approfondir et de
+              développer mes compétences chaque jour.
             </p>
             <a className="btn" href="/CV_Sylvain_Rougié_FR.pdf" target="_blank">
               Mon CV

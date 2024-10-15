@@ -23,14 +23,14 @@ const Projets = [
     source: "https://github.com/Sipixer/Quiz",
     techs: [ReactIcon, TypeScriptIcon, CssIcon],
   },
-  {
-    img: Image3,
-    title: "Beta | QuizzApp",
-    link: "https://quizzapp.sylvainrougie.fr",
-    blank: true,
-    source: "https://github.com/Sipixer/QuizzApp",
-    techs: [NuxtIcon, CssIcon],
-  },
+  // {
+  //   img: Image3,
+  //   title: "Beta | QuizzApp",
+  //   link: "https://quizzapp.sylvainrougie.fr",
+  //   blank: true,
+  //   source: "https://github.com/Sipixer/QuizzApp",
+  //   techs: [NuxtIcon, CssIcon],
+  // },
   {
     img: Image4,
     title: "Données par ville",

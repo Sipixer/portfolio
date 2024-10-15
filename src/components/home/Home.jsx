@@ -10,7 +10,8 @@ const Home = () => {
         <img src={Me} alt="" className="home__img" />
         <h1 className="home__name">Sylvain Rougié</h1>
         <span className="home__education">
-          Développeur Full Stack (Junior) <br /> En alternance
+          Ingénieur Cloud, Sécurité & Infrastructure <br /> Avec compétences en
+          Développement Full Stack
         </span>
 
         <HeaderSocials />

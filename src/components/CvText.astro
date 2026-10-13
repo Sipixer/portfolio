@@ -1,0 +1,102 @@
+---
+import Base from "../layouts/Base.astro";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
+import { contact, content, projectsFor, type Lang } from "../data/profile";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = content[lang];
+const t = c.ui.cv;
+const colon = lang === "fr" ? " :" : ":";
+const schoolProjects = projectsFor(lang).filter((p) => p.origin === "school");
+---
+
+<Base lang={lang} title={`${contact.name} – ${t.title} ${c.headline}`} noindex skipLink={false}>
+  <style is:global>
+    @page {
+      size: A4;
+      margin: 14mm 16mm;
+    }
+    body {
+      color-scheme: light;
+      background: #fff;
+    }
+    .ats {
+      font-family: "Inter", sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+    .ats h2 {
+      margin: 10pt 0 4pt;
+      padding-bottom: 2pt;
+      border-bottom: 1px solid #cbd5e1;
+      font-size: 10pt;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .ats h3 {
+      font-weight: 600;
+    }
+    .ats ul {
+      margin: 2pt 0 4pt;
+      padding-left: 1.1em;
+      list-style: disc;
+    }
+  </style>
+  <div class="ats mx-auto max-w-[180mm] py-6 print:py-0">
+    <h1 class="text-[18pt] font-semibold">{contact.name}</h1>
+    <p class="text-[11pt]">{c.headline}</p>
+    <p class="mt-1">
+      {c.locationFull} | {contact.phone} | {contact.email} | {contact.site} | {contact.githubLabel} | {c.driving}
+    </p>
+
+    <h2>{t.profile}</h2>
+    <p>{c.summary}</p>
+
+    <h2>{t.experience}</h2>
+    <h3>{c.job.role}</h3>
+    <p>{c.job.org} | {c.job.period}</p>
+    <p>{c.job.orgContext[0].toUpperCase() + c.job.orgContext.slice(1)}. {c.job.note}</p>
+    {
+      c.products.map((pr) => (
+        <>
+          <p class="mt-1.5">
+            <strong>{pr.name}</strong> ({pr.period}){colon} {pr.summary}
+          </p>
+          <ul>
+            {pr.points.map((pt) => <li>{pt}</li>)}
+          </ul>
+        </>
+      ))
+    }
+
+    <h2>{t.projects}</h2>
+    <ul>
+      {schoolProjects.map((p) => <li><strong>{p.name}</strong> ({t.schoolTag}){colon} {p.description}</li>)}
+    </ul>
+
+    <h2>{t.education}</h2>
+    {
+      c.education.map((e) => (
+        <p class="mb-1">
+          <strong>{e.title}</strong> | {e.school} | {e.period}
+          {e.detail && <>. {e.detail}</>}
+        </p>
+      ))
+    }
+
+    <h2>{t.skills}</h2>
+    {c.skills.map((s) => <p><strong>{s.group}</strong>{colon} {s.items.join(", ")}</p>)}
+
+    <h2>{t.languages}</h2>
+    <p>{c.languages.map((l) => `${l.name} (${l.level})`).join(", ")}</p>
+
+    <h2>{t.strengths}</h2>
+    <p>{c.strengths.join(", ")}</p>
+  </div>
+</Base>

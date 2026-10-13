@@ -1,10 +1,13 @@
 import { chromium } from "playwright-core";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { mkdir } from "node:fs/promises";
+import { dirname, join } from "node:path";
 
 const documents = [
   { route: "/cv/", file: "cv-sylvain-rougie.pdf", singlePage: true },
   { route: "/cv-ats/", file: "cv-sylvain-rougie-ats.pdf", singlePage: false },
+  { route: "/en/cv/", file: "en/cv-sylvain-rougie-en.pdf", singlePage: true },
+  { route: "/en/cv-ats/", file: "en/cv-sylvain-rougie-en-ats.pdf", singlePage: false },
 ];
 const executablePath =
   process.env.CHROME_PATH ?? `${homedir()}/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome`;
@@ -29,6 +32,7 @@ try {
       if (overflow > 0) console.warn(`${file} overflows the A4 page by ${overflow}px`);
     }
     const output = join("public", file);
+    await mkdir(dirname(output), { recursive: true });
     await page.pdf({ path: output, format: "A4", printBackground: true, preferCSSPageSize: true, tagged: true });
     await Bun.write(join("dist", file), Bun.file(output));
     console.log(`Wrote ${output}`);

@@ -1,13 +1,41 @@
 ---
 import { Image } from "astro:assets";
 import tribushare from "../assets/shots/tribushare.png";
-import type { Project } from "../data/profile";
+import type { Lang, Visual } from "../data/profile";
 
 interface Props {
-  visual: Project["visual"];
+  visual: Visual;
+  lang: Lang;
+  screenshotAlt: string;
 }
 
-const { visual } = Astro.props;
+const { visual, lang, screenshotAlt } = Astro.props;
+const labels = {
+  fr: {
+    encoderDone: "✓ audio · vignettes · publié sur R2",
+    missionsTitle: "Missions de la semaine",
+    missions: ["Regarder l’épisode 3", "Inviter deux amis", "Voter pour la suite"],
+    play: "▶ lecture",
+    lanterna: "déchiffré en mémoire · rien d’écrit sur le disque",
+    spire: ["front", "panier", "paiement", "stats"],
+    spireNote: "spiffe://boutique · mTLS partout",
+    jobs: "2 terminées · 2 en cours · 1 relancée · 3 en attente",
+    server: "serveur",
+    rps: "requêtes / s",
+  },
+  en: {
+    encoderDone: "✓ audio · thumbnails · published to R2",
+    missionsTitle: "This week’s missions",
+    missions: ["Watch episode 3", "Invite two friends", "Vote for what’s next"],
+    play: "▶ play",
+    lanterna: "decrypted in memory · nothing written to disk",
+    spire: ["front", "cart", "payment", "stats"],
+    spireNote: "spiffe://shop · mTLS everywhere",
+    jobs: "2 done · 2 running · 1 retried · 3 queued",
+    server: "server",
+    rps: "requests / s",
+  },
+}[lang];
 const ladder = [
   { label: "1080p", width: "100%" },
   { label: "720p", width: "74%" },
@@ -15,11 +43,11 @@ const ladder = [
   { label: "360p", width: "36%" },
 ];
 const missions = [
-  { label: "Regarder l’épisode 3", progress: "100%", reward: "+50" },
-  { label: "Inviter deux amis", progress: "50%", reward: "+120" },
-  { label: "Voter pour la suite", progress: "15%", reward: "+30" },
+  { label: labels.missions[0], progress: "100%", reward: "+50" },
+  { label: labels.missions[1], progress: "50%", reward: "+120" },
+  { label: labels.missions[2], progress: "15%", reward: "+30" },
 ];
-const services = ["front", "panier", "paiement", "stats"];
+const services = labels.spire;
 const jobs = ["done", "done", "run", "run", "retry", "wait", "wait", "wait"];
 const spark = [12, 18, 14, 22, 19, 28, 24, 31, 26, 35, 30, 42, 37, 33, 40];
 const sparkPath = spark.map((v, i) => `${i === 0 ? "M" : "L"}${(i / (spark.length - 1)) * 300},${60 - v}`).join(" ");
@@ -36,7 +64,7 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
         <span class="size-2 rounded-full bg-white/25" />
         <span class="ml-3 rounded bg-white/10 px-2 py-0.5 font-mono text-[10px] text-white/60">tribushare.com</span>
       </div>
-      <Image src={tribushare} alt="Page d’accueil de TribuShare" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 760px, 100vw" class="block aspect-[16/9] w-full object-cover object-left-top lg:aspect-auto lg:min-h-0 lg:flex-1" loading="lazy" />
+      <Image src={tribushare} alt={screenshotAlt} widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 760px, 100vw" class="block aspect-[16/9] w-full object-cover object-left-top lg:aspect-auto lg:min-h-0 lg:flex-1" loading="lazy" />
     </div>
   )
 }
@@ -55,7 +83,7 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
           </div>
         </div>
       ))}
-      <p class="pt-1 text-emerald-300">✓ audio · vignettes · publié sur R2</p>
+      <p class="pt-1 text-emerald-300">{labels.encoderDone}</p>
     </div>
   )
 }
@@ -63,7 +91,7 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
 {
   visual === "tribiew" && (
     <div class:list={[dark, "gap-2 font-sans ring-1 ring-violet-400/30 ring-inset"]} aria-hidden="true">
-      <p class="text-[11px] font-semibold tracking-wide text-violet-300 uppercase">Missions de la semaine</p>
+      <p class="text-[11px] font-semibold tracking-wide text-violet-300 uppercase">{labels.missionsTitle}</p>
       {missions.map((m) => (
         <div class="rounded-lg bg-white/[0.06] px-3 py-1.5">
           <div class="flex justify-between text-[12px] font-medium text-white/85">
@@ -87,9 +115,9 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
         <span class="h-px flex-1 border-t border-dashed border-white/30" />
         <svg viewBox="0 0 16 16" class="size-6 shrink-0 text-amber-300" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5" /><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" /></svg>
         <span class="h-px flex-1 border-t border-dashed border-white/30" />
-        <span class="rounded-lg bg-amber-300 px-3 py-2 font-semibold whitespace-nowrap text-stone-900">▶ lecture</span>
+        <span class="rounded-lg bg-amber-300 px-3 py-2 font-semibold whitespace-nowrap text-stone-900">{labels.play}</span>
       </div>
-      <p class="text-center text-white/45">déchiffré en mémoire · rien d’écrit sur le disque</p>
+      <p class="text-center text-white/45">{labels.lanterna}</p>
     </div>
   )
 }
@@ -105,7 +133,7 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
           </div>
         ))}
       </div>
-      <p class="text-center text-[10px] text-stone-500">spiffe://boutique · mTLS partout</p>
+      <p class="text-center text-[10px] text-stone-500">{labels.spireNote}</p>
     </div>
   )
 }
@@ -126,7 +154,7 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
           />
         ))}
       </div>
-      <p class="text-[10px] text-stone-500">2 terminées · 2 en cours · 1 relancée · 3 en attente</p>
+      <p class="text-[10px] text-stone-500">{labels.jobs}</p>
     </div>
   )
 }
@@ -135,11 +163,11 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
   visual === "chat" && (
     <div class={light} aria-hidden="true">
       <div class="flex items-center gap-2">
-        <span class="rounded-lg border border-stone-200 bg-white px-3 py-2 whitespace-nowrap">serveur A</span>
+        <span class="rounded-lg border border-stone-200 bg-white px-3 py-2 whitespace-nowrap">{labels.server} A</span>
         <span class="h-px flex-1 border-t border-dashed border-stone-400" />
         <span class="rounded-lg bg-[#D82C20] px-3 py-2 font-semibold text-white">Redis</span>
         <span class="h-px flex-1 border-t border-dashed border-stone-400" />
-        <span class="rounded-lg border border-stone-200 bg-white px-3 py-2 whitespace-nowrap">serveur B</span>
+        <span class="rounded-lg border border-stone-200 bg-white px-3 py-2 whitespace-nowrap">{labels.server} B</span>
       </div>
     </div>
   )
@@ -149,7 +177,7 @@ const light = "flex h-full w-full flex-col justify-center rounded-2xl bg-stone-1
   visual === "observability" && (
     <div class={light} aria-hidden="true">
       <div class="flex justify-between text-[10px] text-stone-500">
-        <span>requêtes / s</span>
+        <span>{labels.rps}</span>
         <span class="text-emerald-700">p95 120 ms</span>
       </div>
       <svg viewBox="0 0 300 60" class="mt-2 h-16 w-full" preserveAspectRatio="none">

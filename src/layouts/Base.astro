@@ -1,32 +1,37 @@
 ---
 import "../styles/global.css";
-import { profile } from "../data/profile";
+import { contact, content, type Lang } from "../data/profile";
 import interFont from "@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2?url";
 
 interface Props {
+  lang: Lang;
   title?: string;
   description?: string;
   noindex?: boolean;
   skipLink?: boolean;
+  alternates?: Record<Lang, string>;
 }
 
-const {
-  title = `${profile.name} · ${profile.headline}`,
-  description = profile.summary,
-  noindex = false,
-  skipLink = true,
-} = Astro.props;
+const { lang, noindex = false, skipLink = true, alternates } = Astro.props;
+const c = content[lang];
+const title = Astro.props.title ?? `${contact.name} · ${c.headline}`;
+const description = Astro.props.description ?? c.summary;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={c.htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates &&
+        Object.entries(alternates).map(([code, path]) => <link rel="alternate" hreflang={code} href={new URL(path, Astro.site)} />)
+    }
+    {alternates && <link rel="alternate" hreflang="x-default" href={new URL(alternates.fr, Astro.site)} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" as="font" type="font/woff2" href={interFont} crossorigin />
     <meta name="theme-color" content="#f6f4f1" />
@@ -34,7 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_US"} />
     <meta name="twitter:card" content="summary" />
     {noindex && <meta name="robots" content="noindex" />}
     <script
@@ -42,16 +47,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        name: profile.name,
-        jobTitle: profile.headline,
-        url: "https://www.sylvainrougie.fr",
-        address: { "@type": "PostalAddress", addressLocality: profile.location, addressCountry: "FR" },
-        sameAs: [profile.github],
+        name: contact.name,
+        jobTitle: c.headline,
+        url: contact.siteUrl,
+        address: { "@type": "PostalAddress", addressLocality: "Toulouse", addressCountry: "FR" },
+        sameAs: [contact.github],
       })}
     />
   </head>
   <body class="bg-[#f6f4f1] font-sans text-stone-700 antialiased selection:bg-orange-200 selection:text-stone-900">
-    {skipLink && <a href="#main" class="sr-only z-50 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4">Aller au contenu</a>}
+    {skipLink && <a href="#main" class="sr-only z-50 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4">{c.ui.skipLink}</a>}
     <slot />
   </body>
 </html>

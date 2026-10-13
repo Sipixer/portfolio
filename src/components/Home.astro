@@ -1,0 +1,241 @@
+---
+import Base from "../layouts/Base.astro";
+import TechIcon from "./TechIcon.astro";
+import ProjectVisual from "./ProjectVisual.astro";
+import avatar from "../assets/avatar.svg?url";
+import { contact, content, projectsFor, type Lang } from "../data/profile";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = content[lang];
+const t = c.ui;
+const projects = projectsFor(lang);
+const alternates = { fr: "/", en: "/en/" };
+const otherHome = lang === "fr" ? alternates.en : alternates.fr;
+
+const nav = [
+  { href: "#projets", label: t.nav.projects, mobile: true },
+  { href: "#parcours", label: t.nav.career, mobile: false },
+  { href: "#competences", label: t.nav.skills, mobile: false },
+  { href: "#contact", label: t.nav.contact, mobile: true },
+];
+const spans: Record<string, string> = {
+  tribushare: "md:col-span-2 lg:col-span-4 lg:row-span-2",
+  encoder: "lg:col-span-2",
+  tribiew: "lg:col-span-2",
+  lanterna: "lg:col-span-2",
+  spire: "lg:col-span-2",
+  frameforge: "lg:col-span-2",
+  chat: "lg:col-span-3",
+  observability: "lg:col-span-3",
+};
+const card =
+  "rounded-3xl bg-white shadow-[0_0_0_1px_rgba(28,25,23,0.06),0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-12px_rgba(28,25,23,0.12)]";
+const cardHover =
+  "hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_rgba(28,25,23,0.08),0_2px_4px_rgba(28,25,23,0.05),0_28px_56px_-18px_rgba(28,25,23,0.25)] motion-reduce:hover:translate-y-0";
+const eyebrow = "text-[13px] font-semibold tracking-[0.08em] text-accent uppercase";
+const heading =
+  "mt-3 text-[clamp(2rem,4vw,3rem)] leading-[1.05] font-semibold tracking-[-0.022em] text-stone-900 sm:tracking-[-0.03em]";
+---
+
+<Base lang={lang} alternates={alternates}>
+  <header class="fixed inset-x-0 top-4 z-30 flex justify-center px-4">
+    <nav aria-label={lang === "fr" ? "Navigation principale" : "Main navigation"} class="material flex items-center gap-1 rounded-full border border-white/60 bg-white/70 p-1.5 shadow-[0_0_0_1px_rgba(28,25,23,0.06),0_8px_24px_-8px_rgba(28,25,23,0.18)] backdrop-blur-xl backdrop-saturate-150">
+      <a href={alternates[lang]} class="press flex items-center gap-2 rounded-full py-1 pr-1 pl-1 text-sm font-semibold sm:pr-3 text-stone-900 hover:bg-stone-900/5">
+        <img src={avatar} alt="" width="28" height="28" class="size-7 rounded-full bg-amber-300" />
+        <span class="max-sm:sr-only">Sylvain</span>
+      </a>
+      {
+        nav.map((n) => (
+          <a href={n.href} class:list={["press rounded-full px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-900/5 hover:text-stone-900", !n.mobile && "max-md:hidden"]}>
+            {n.label}
+          </a>
+        ))
+      }
+      <a href={otherHome} hreflang={lang === "fr" ? "en" : "fr"} lang={lang === "fr" ? "en" : "fr"} class="press rounded-full px-2.5 py-1.5 text-sm font-semibold text-stone-600 hover:bg-stone-900/5 hover:text-stone-900">
+        <span class="sm:hidden">{lang === "fr" ? "EN" : "FR"}</span>
+        <span class="max-sm:hidden">{t.switchLang}</span>
+      </a>
+      <a href={contact.github} aria-label="GitHub" class="press grid size-8 place-items-center rounded-full text-stone-600 hover:bg-stone-900/5 hover:text-stone-900 max-sm:hidden">
+        <svg viewBox="0 0 24 24" class="size-[18px]" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3" /></svg>
+      </a>
+      <a href={t.pdf.designed} class="press ml-0.5 rounded-full bg-stone-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-stone-700">{t.cvPdf}</a>
+    </nav>
+  </header>
+
+  <main id="main" class="mx-auto max-w-6xl px-5">
+    <section class="flex flex-col items-center pt-28 pb-16 text-center sm:pt-44 sm:pb-24">
+      <button type="button" data-hello class="group relative cursor-pointer rounded-full" aria-label={t.helloLabel}>
+        <span aria-hidden="true" class="absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,rgba(251,146,60,0.35),transparent)]"></span>
+        <img src={avatar} alt={t.avatarAlt} width="112" height="112" class="relative size-20 rounded-full bg-amber-300 shadow-[0_0_0_6px_#fff,0_16px_40px_-12px_rgba(194,65,12,0.45)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-rotate-[8deg] group-data-[waving]:-rotate-[12deg] motion-reduce:transition-none motion-reduce:group-hover:rotate-0 sm:size-28" />
+        <span aria-hidden="true" class="pointer-events-none absolute -top-3 left-[78%] origin-bottom-left scale-90 rounded-2xl rounded-bl-sm bg-stone-900 px-3 py-1.5 text-sm font-semibold whitespace-nowrap text-white opacity-0 shadow-lg transition duration-200 group-hover:scale-100 group-hover:opacity-100 group-data-[waving]:scale-100 group-data-[waving]:opacity-100 motion-reduce:transition-none">{t.hello}</span>
+      </button>
+      <p class="mt-8 text-[13px] font-semibold tracking-[0.08em] text-stone-600 uppercase">{contact.name} · {c.location}</p>
+      <h1 class="mt-5 max-w-4xl text-[clamp(2.5rem,6.5vw,5.25rem)] leading-[1.02] font-semibold tracking-[-0.022em] text-balance text-stone-900 sm:tracking-[-0.03em] lg:tracking-[-0.035em]">
+        {c.pitch}
+      </h1>
+      <p class="mt-6 max-w-2xl text-[16px] leading-relaxed text-pretty text-stone-600 sm:text-[17px]">{c.summary}</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3 sm:mt-10">
+        <a href="#contact" class="press rounded-full bg-accent px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(194,65,12,0.7)] hover:bg-accent-strong">{t.contactMe}</a>
+        <a href="#projets" class="press rounded-full bg-white px-6 py-3 text-[15px] font-semibold text-stone-900 shadow-[0_0_0_1px_rgba(28,25,23,0.1)] hover:bg-stone-50">{t.seeProjects}</a>
+      </div>
+    </section>
+
+    <section id="projets" class="py-16">
+      <p class={eyebrow}>{t.projectsEyebrow}</p>
+      <h2 class={heading}>{t.projectsTitle}</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-flow-dense lg:grid-cols-6">
+        {
+          projects.map((p) => {
+            const flush = p.visual === "tribushare";
+            return (
+              <article class:list={[card, cardHover, spans[p.visual], p.href && "press press-card", "group relative flex flex-col overflow-hidden has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-accent"]}>
+                <div class="p-7 pb-6">
+                  <p class:list={["mb-2 text-[12px] font-semibold tracking-[0.06em] uppercase", p.origin === "syloe" ? "text-accent" : "text-stone-500"]}>{p.originLabel}</p>
+                  <h3 class:list={["font-semibold tracking-[-0.01em] text-stone-900", flush ? "text-2xl sm:text-3xl" : "text-lg"]}>
+                    {p.href ? <a href={p.href} class="after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none">{p.name}</a> : p.name}
+                  </h3>
+                  <p class:list={["font-medium text-stone-500", flush ? "text-lg" : "text-[15px]"]}>{p.tagline}</p>
+                  <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-stone-600">{p.description}</p>
+                  <ul class="mt-4 flex flex-wrap gap-1.5" aria-label="Stack">
+                    {p.tags.map((tag) => <li class="rounded-md bg-stone-100 px-2 py-0.5 text-[12px] font-medium text-stone-600">{tag}</li>)}
+                  </ul>
+                  {p.href && (
+                    <p class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent" aria-hidden="true">
+                      {p.linkLabel}
+                      <svg viewBox="0 0 16 16" class="size-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    </p>
+                  )}
+                  {p.status && <p class="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500"><span class="size-1.5 rounded-full bg-stone-400" aria-hidden="true" />{p.status}</p>}
+                </div>
+                {flush ? (
+                  <div class="mt-auto flex min-h-0 flex-1 flex-col px-7">
+                    <ProjectVisual visual={p.visual} lang={lang} screenshotAlt={t.screenshotAlt} />
+                  </div>
+                ) : (
+                  <div class="mt-auto px-7 pb-7">
+                    <div class="h-44">
+                      <ProjectVisual visual={p.visual} lang={lang} screenshotAlt={t.screenshotAlt} />
+                    </div>
+                  </div>
+                )}
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <section id="parcours" class="py-16">
+      <p class={eyebrow}>{t.careerEyebrow}</p>
+      <h2 class={heading}>{t.careerTitle}</h2>
+      <article class:list={[card, "mt-10 p-7 sm:p-9"]}>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 class="text-xl font-semibold tracking-[-0.01em] text-stone-900">
+            {c.job.org} <span class="font-normal text-stone-500">· {c.job.orgContext}</span>
+          </h3>
+          <p class="text-sm text-stone-500">{c.job.period}</p>
+        </div>
+        <p class="mt-1 font-medium text-accent">{c.job.role}</p>
+        <p class="mt-2 text-[15px] text-stone-600">{c.job.note}</p>
+        <ol class="mt-8 grid gap-6 lg:grid-cols-3 lg:gap-10">
+          {
+            c.products.map((pr) => (
+              <li class="border-t border-stone-200 pt-5">
+                <div class="flex items-baseline justify-between gap-3">
+                  <h4 class="font-semibold text-stone-900">{pr.name}</h4>
+                  <p class="shrink-0 text-[13px] text-stone-500">{pr.period}</p>
+                </div>
+                <p class="mt-2 text-[15px] leading-relaxed text-stone-600">{pr.summary}</p>
+                <p class="mt-2 text-[14px] leading-relaxed text-stone-500">{pr.points[0]}</p>
+              </li>
+            ))
+          }
+        </ol>
+        <a href={t.pdf.designed} class="press mt-8 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent-strong">
+          {t.careerMore}
+          <svg viewBox="0 0 16 16" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </a>
+      </article>
+
+      <h3 class="mt-14 text-xl font-semibold tracking-[-0.01em] text-stone-900">{t.education}</h3>
+      <ol class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          c.education.map((e) => (
+            <li class:list={[card, "p-6"]}>
+              <p class="text-[13px] font-medium text-stone-500">{e.period}</p>
+              <p class="mt-2 font-semibold text-stone-900">{e.title}</p>
+              <p class="text-sm text-stone-600">{e.school}</p>
+              {e.detail && <p class="mt-2 text-[13px] leading-snug text-stone-500">{e.detail}</p>}
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section id="competences" class="py-16">
+      <p class={eyebrow}>{t.skillsEyebrow}</p>
+      <h2 class={heading}>{t.skillsTitle}</h2>
+      <div class="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3">
+        {
+          c.skills.map((s) => (
+            <div class:list={[card, "mb-5 break-inside-avoid p-6"]}>
+              <h3 class="font-semibold text-stone-900">{s.group}</h3>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {s.items.map((i) => <TechIcon name={i} />)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="contact" class="py-24">
+      <div class="relative overflow-hidden rounded-[2rem] bg-stone-900 px-6 py-20 text-center">
+        <div aria-hidden="true" class="absolute -top-40 left-1/2 h-80 w-[640px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(251,146,60,0.45),transparent)]"></div>
+        <h2 class="relative text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05] font-semibold tracking-[-0.03em] text-white">{t.contactTitle}</h2>
+        <p class="relative mx-auto mt-4 max-w-md text-lg text-stone-300">{t.contactText}</p>
+        <div class="relative mt-10 flex flex-wrap justify-center gap-3">
+          <a href={`mailto:${contact.email}`} class="press rounded-full bg-white px-6 py-3 font-semibold text-stone-900 hover:bg-orange-50">{contact.email}</a>
+          <button type="button" data-copy={contact.email} data-copy-label={t.copy} data-copied-label={t.copied} data-copied-status={t.copiedStatus} data-failed-status={t.copyFailed} class="press min-w-[11rem] cursor-pointer rounded-full bg-white/10 px-6 py-3 font-semibold text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.15)] hover:bg-white/15">
+            <span data-label>{t.copy}</span>
+          </button>
+          <a href={t.pdf.designed} class="press rounded-full bg-white/10 px-6 py-3 font-semibold text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.15)] hover:bg-white/15">{t.downloadCv}</a>
+        </div>
+        <p data-copied aria-live="polite" class="relative mt-4 h-5 text-sm text-emerald-300"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pb-10 text-center text-sm text-stone-600">
+    © {new Date().getFullYear()} {contact.name} · <a href={contact.github} class="hover:text-stone-900">GitHub</a> · <a href={t.pdf.text} class="hover:text-stone-900">{t.textCv}</a> · <a href={otherHome} class="hover:text-stone-900">{t.switchLang}</a>
+  </footer>
+</Base>
+
+<script>
+  const hello = document.querySelector<HTMLButtonElement>("[data-hello]");
+  hello?.addEventListener("click", () => {
+    hello.dataset.waving = "";
+    setTimeout(() => delete hello.dataset.waving, 1600);
+  });
+
+  const copy = document.querySelector<HTMLButtonElement>("[data-copy]");
+  const label = copy?.querySelector<HTMLElement>("[data-label]");
+  const status = document.querySelector<HTMLElement>("[data-copied]");
+  copy?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(copy.dataset.copy ?? "");
+      if (label) label.textContent = copy.dataset.copiedLabel ?? "";
+      if (status) status.textContent = copy.dataset.copiedStatus ?? "";
+    } catch {
+      if (status) status.textContent = copy.dataset.failedStatus ?? "";
+    }
+    setTimeout(() => {
+      if (label) label.textContent = copy.dataset.copyLabel ?? "";
+      if (status) status.textContent = "";
+    }, 2000);
+  });
+</script>

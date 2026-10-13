@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "installCommand": "bun install",
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/CV_Sylvain_Rougi%C3%A9_FR.pdf", "destination": "/cv-sylvain-rougie.pdf", "permanent": true },
+    { "source": "/CV_Sylvain_Rougié_FR.pdf", "destination": "/cv-sylvain-rougie.pdf", "permanent": true },
+    { "source": "/CV_Sylvain_Rougi%C3%A9_EN.pdf", "destination": "/cv-sylvain-rougie.pdf", "permanent": true },
+    { "source": "/CV_Sylvain_Rougié_EN.pdf", "destination": "/cv-sylvain-rougie.pdf", "permanent": true }
+  ]
+}

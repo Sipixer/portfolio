@@ -1,0 +1,63 @@
+---
+import * as icons from "simple-icons";
+
+const slugs: Record<string, string> = {
+  TypeScript: "typescript",
+  React: "react",
+  "React Native": "react",
+  "TanStack Start": "tanstack",
+  GraphQL: "graphql",
+  "HTML / CSS": "html5",
+  "Tailwind CSS": "tailwindcss",
+  Rust: "rust",
+  "Node.js": "nodedotjs",
+  Bun: "bun",
+  Go: "go",
+  Python: "python",
+  PostgreSQL: "postgresql",
+  MongoDB: "mongodb",
+  Redis: "redis",
+  "Drizzle ORM": "drizzle",
+  Docker: "docker",
+  Kubernetes: "kubernetes",
+  Terraform: "terraform",
+  Ansible: "ansible",
+  ArgoCD: "argo",
+  Git: "git",
+  "GitHub Actions": "githubactions",
+  "Cloudflare Workers": "cloudflareworkers",
+  Linux: "linux",
+  Prometheus: "prometheus",
+  Grafana: "grafana",
+  OpenTelemetry: "opentelemetry",
+  Sentry: "sentry",
+  Vitest: "vitest",
+  FFmpeg: "ffmpeg",
+  "Stripe Connect": "stripe",
+  "Pare-feu pfSense": "pfsense",
+  "Vercel AI SDK": "vercel",
+  "Outils de code IA": "claude",
+};
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const slug = slugs[name];
+const icon = slug
+  ? (icons as Record<string, { path: string; hex: string }>)[`si${slug[0].toUpperCase()}${slug.slice(1)}`]
+  : undefined;
+const brand = icon && !["000000", "010101", "181717", "212121", "FFFFFF", "ECE8D1"].includes(icon.hex) ? `#${icon.hex}` : "#1c1917";
+---
+
+<li class="group/chip inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-3 py-1 text-[13px] font-medium text-stone-700 transition-colors hover:border-stone-300" style={`--brand:${brand}`}>
+  {
+    icon && (
+      <svg viewBox="0 0 24 24" class="-ml-1 size-4 shrink-0 text-stone-400 transition-colors group-hover/chip:text-(--brand)" fill="currentColor" aria-hidden="true">
+        <path d={icon.path} />
+      </svg>
+    )
+  }
+  {name}
+</li>

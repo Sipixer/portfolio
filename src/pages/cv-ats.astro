@@ -1,0 +1,94 @@
+---
+import Base from "../layouts/Base.astro";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
+import { profile, job, products, projects, skills, education, languages, strengths } from "../data/profile";
+
+const schoolProjects = projects.filter((p) => p.origin !== "Syloe Group");
+---
+
+<Base title={`${profile.name} – CV ${profile.headline}`} noindex skipLink={false}>
+  <style is:global>
+    @page {
+      size: A4;
+      margin: 14mm 16mm;
+    }
+    body {
+      color-scheme: light;
+      background: #fff;
+    }
+    .ats {
+      font-family: "Inter", sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+    .ats h2 {
+      margin: 10pt 0 4pt;
+      padding-bottom: 2pt;
+      border-bottom: 1px solid #cbd5e1;
+      font-size: 10pt;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .ats h3 {
+      font-weight: 600;
+    }
+    .ats ul {
+      margin: 2pt 0 4pt;
+      padding-left: 1.1em;
+      list-style: disc;
+    }
+  </style>
+  <div class="ats mx-auto max-w-[180mm] py-6 print:py-0">
+    <h1 class="text-[18pt] font-semibold">{profile.name}</h1>
+    <p class="text-[11pt]">{profile.headline}</p>
+    <p class="mt-1">
+      {profile.locationFull} | {profile.phone} | {profile.email} | {profile.site} | {profile.githubLabel} | {profile.driving}
+    </p>
+
+    <h2>Profil</h2>
+    <p>{profile.summary}</p>
+
+    <h2>Expérience professionnelle</h2>
+    <h3>{job.role}</h3>
+    <p>{job.org} | {job.period}</p>
+    <p>{job.orgContext[0].toUpperCase() + job.orgContext.slice(1)}. {job.note}</p>
+    {
+      products.map((pr) => (
+        <>
+          <p class="mt-1.5">
+            <strong>{pr.name}</strong> ({pr.period})&nbsp;: {pr.summary}
+          </p>
+          <ul>
+            {pr.points.map((pt) => <li>{pt}</li>)}
+          </ul>
+        </>
+      ))
+    }
+
+    <h2>Projets</h2>
+    <ul>
+      {schoolProjects.map((p) => <li><strong>{p.name}</strong> (Ynov)&nbsp;: {p.description}</li>)}
+    </ul>
+
+    <h2>Formation</h2>
+    {
+      education.map((e) => (
+        <p class="mb-1">
+          <strong>{e.title}</strong> | {e.school} | {e.period}
+          {e.detail && <>. {e.detail}</>}
+        </p>
+      ))
+    }
+
+    <h2>Compétences</h2>
+    {skills.map((s) => <p><strong>{s.group}</strong>&nbsp;: {s.items.join(", ")}</p>)}
+
+    <h2>Langues</h2>
+    <p>{languages.map((l) => `${l.name} (${l.level})`).join(", ")}</p>
+
+    <h2>Atouts</h2>
+    <p>{strengths.join(", ")}</p>
+  </div>
+</Base>

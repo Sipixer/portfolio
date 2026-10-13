@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter/opsz.css";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-accent: #c2410c;
+  --color-accent-strong: #9a3412;
+  --color-accent-deco: #e8590c;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  font-optical-sizing: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+#contact :focus-visible {
+  outline-color: #fff;
+}
+
+.press {
+  transition:
+    transform 160ms cubic-bezier(0.2, 0, 0, 1),
+    translate 220ms cubic-bezier(0.2, 0, 0, 1),
+    color 160ms,
+    background-color 160ms,
+    box-shadow 220ms;
+}
+.press:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
+}
+.press-card:active {
+  transform: scale(0.985);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .press:active,
+  .press-card:active {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .material {
+    background: #fff !important;
+    backdrop-filter: none !important;
+  }
+}

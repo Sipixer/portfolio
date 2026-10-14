@@ -61,12 +61,12 @@ const schoolProjects = projectsFor(lang).filter((p) => p.origin === "school");
     <h2>{t.experience}</h2>
     <h3>{c.job.role}</h3>
     <p>{c.job.org} | {c.job.period}</p>
-    <p>{c.job.orgContext[0].toUpperCase() + c.job.orgContext.slice(1)}. {c.job.note}</p>
+    <p>{c.job.note}</p>
     {
       c.products.map((pr) => (
         <>
           <p class="mt-1.5">
-            <strong>{pr.name}</strong> ({pr.period}){colon} {pr.summary}
+            <strong>{pr.name}</strong> ({pr.period}) – {pr.summary}
           </p>
           <ul>
             {pr.points.map((pt) => <li>{pt}</li>)}
@@ -77,7 +77,7 @@ const schoolProjects = projectsFor(lang).filter((p) => p.origin === "school");
 
     <h2>{t.projects}</h2>
     <ul>
-      {schoolProjects.map((p) => <li><strong>{p.name}</strong> ({t.schoolTag}){colon} {p.description}</li>)}
+      {schoolProjects.map((p) => <li><strong>{p.name}</strong> ({t.schoolTag}) – {p.tagline} ({p.tags.join(", ")})</li>)}
     </ul>
 
     <h2>{t.education}</h2>
@@ -96,7 +96,5 @@ const schoolProjects = projectsFor(lang).filter((p) => p.origin === "school");
     <h2>{t.languages}</h2>
     <p>{c.languages.map((l) => `${l.name} (${l.level})`).join(", ")}</p>
 
-    <h2>{t.strengths}</h2>
-    <p>{c.strengths.join(", ")}</p>
   </div>
 </Base>

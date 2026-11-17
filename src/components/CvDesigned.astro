@@ -89,6 +89,9 @@ const schoolProjects = projectsFor(lang).filter((p) => p.origin === "school");
 
       <section>
         <h2 class="cv-title">{t.experience}</h2>
+        <h3 class="text-[10.8pt] font-semibold text-slate-900">{c.current.role}</h3>
+        <p><span class="font-semibold text-sky-700">{c.current.org}</span> <span class="text-slate-500">| {c.current.period}</span></p>
+        <p class="mb-1.5 text-slate-500">{c.current.note}</p>
         <h3 class="text-[10.8pt] font-semibold text-slate-900">{c.job.role}</h3>
         <p><span class="font-semibold text-sky-700">{c.job.org}</span> <span class="text-slate-500">| {c.job.period}</span></p>
         <p class="text-slate-500">{c.job.note}</p>

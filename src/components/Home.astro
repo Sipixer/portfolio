@@ -134,6 +134,14 @@ const heading =
       <h2 class={heading}>{t.careerTitle}</h2>
       <article class:list={[card, "mt-10 p-7 sm:p-9"]}>
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 class="text-xl font-semibold tracking-[-0.01em] text-stone-900">{c.current.org}</h3>
+          <p class="text-sm text-stone-500">{c.current.period}</p>
+        </div>
+        <p class="mt-1 font-medium text-accent">{c.current.role}</p>
+        <p class="mt-2 text-[15px] text-stone-600">{c.current.note}</p>
+      </article>
+      <article class:list={[card, "mt-6 p-7 sm:p-9"]}>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h3 class="text-xl font-semibold tracking-[-0.01em] text-stone-900">
             {c.job.org}
           </h3>

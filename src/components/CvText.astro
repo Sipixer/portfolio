@@ -59,6 +59,9 @@ const schoolProjects = projectsFor(lang).filter((p) => p.origin === "school");
     <p>{c.summary}</p>
 
     <h2>{t.experience}</h2>
+    <h3>{c.current.role}</h3>
+    <p>{c.current.org} | {c.current.period}</p>
+    <p>{c.current.note}</p>
     <h3>{c.job.role}</h3>
     <p>{c.job.org} | {c.job.period}</p>
     <p>{c.job.note}</p>

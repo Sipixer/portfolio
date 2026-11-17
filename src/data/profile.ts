@@ -56,6 +56,7 @@ type Content = {
   driving: string;
   pitch: string;
   summary: string;
+  current: { role: string; org: string; period: string; note: string };
   job: { role: string; org: string; orgContext: string; period: string; note: string };
   products: Product[];
   projects: Record<Visual, ProjectText>;
@@ -111,13 +112,19 @@ type Content = {
 export const content: Record<Lang, Content> = {
   fr: {
     htmlLang: "fr",
-    headline: "Développeur Full-Stack & Ingénieur Cloud",
+    headline: "Développeur Full-Stack & Architecte Cloud",
     location: "Toulouse",
     locationFull: "Toulouse (31), France",
     driving: "Permis B",
     pitch: "Je construis des applications web, et l’infrastructure qui les fait tourner.",
     summary:
-      "Développeur full-stack orienté cloud. Quatre ans à construire des plateformes de streaming chez Syloe Group, avec des agents IA au quotidien.",
+      "Développeur full-stack et architecte cloud. Quatre ans à construire les plateformes de streaming de Syloe Group, dont TribuShare comme développeur principal. Indépendant depuis novembre 2026.",
+    current: {
+      role: "Président",
+      org: "La Pèze (SASU)",
+      period: "depuis novembre 2026",
+      note: "Conseil et développement logiciel · architecture et développement de TribuShare pour Syloe Group",
+    },
     job: {
       role: "Développeur Full-Stack & Cloud (alternance)",
       org: "Syloe Group",
@@ -212,10 +219,10 @@ export const content: Record<Lang, Content> = {
     ],
     education: [
       {
-        title: "Mastère Expert en Cloud, Sécurité & Infrastructure",
+        title: "Expert en architecture des systèmes d’information",
         school: "Ynov Campus Toulouse",
         period: "2024 – 2026",
-        detail: "Bac+5, alternance",
+        detail: "Titre RNCP niveau 7 (Bac+5), obtenu en octobre 2026",
       },
       {
         title: "Concepteur Développeur d’Applications",
@@ -277,13 +284,19 @@ export const content: Record<Lang, Content> = {
   },
   en: {
     htmlLang: "en",
-    headline: "Full-Stack Developer & Cloud Engineer",
+    headline: "Full-Stack Developer & Cloud Architect",
     location: "Toulouse, France",
     locationFull: "Toulouse, France",
     driving: "Driving licence",
     pitch: "I build web apps, and the infrastructure that runs them.",
     summary:
-      "Cloud-minded full-stack developer. Four years building streaming platforms at Syloe Group, working daily with AI coding agents.",
+      "Full-stack developer and cloud architect. Four years building Syloe Group’s streaming platforms, including TribuShare as lead developer. Independent since November 2026.",
+    current: {
+      role: "Founder & President",
+      org: "La Pèze (SASU)",
+      period: "since November 2026",
+      note: "Software consulting and development · architecture and development of TribuShare for Syloe Group",
+    },
     job: {
       role: "Full-Stack & Cloud Developer (work-study)",
       org: "Syloe Group",
@@ -378,10 +391,10 @@ export const content: Record<Lang, Content> = {
     ],
     education: [
       {
-        title: "Master’s degree, Cloud, Security & Infrastructure",
+        title: "Information Systems Architecture Expert",
         school: "Ynov Campus Toulouse",
         period: "2024 – 2026",
-        detail: "Master’s level, work-study",
+        detail: "French RNCP level 7 (Master’s level), awarded October 2026",
       },
       {
         title: "Application Designer & Developer",
